@@ -5,12 +5,12 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return '<h1> Миссия Колонизация Марса </h1>'
+    return render_template("base.html")
 
 
-@app.route('/index')
-def about():
-    return '<h1> И на Марсе будут яблони цвести! </h1>'
+@app.route('/index/<title>')
+def about(title):
+    return render_template('base.html', title=title)
 
 
 @app.route('/promotion')
