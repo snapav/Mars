@@ -1,6 +1,22 @@
+from crypt import methods
+
 from flask import Flask, render_template, request
+from flask_wtf import FlaskForm
+from werkzeug.utils import redirect
+from wtforms import StringField, PasswordField, SubmitField
+from wtforms.validators import DataRequired
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'yandexlyceum'
+
+class LoginForm(FlaskForm):
+    astronaut_id = StringField('id астронавта', validators=[DataRequired()])
+    astronaut_password = PasswordField('Пароль астронавта', validators=[DataRequired()])
+    capitan_id = StringField('id капитана', validators=[DataRequired()])
+    capitan_password = PasswordField('Пароль капитана', validators=[DataRequired()])
+    access = SubmitField('Доступ')
+
+
 
 
 @app.route('/')
@@ -67,6 +83,15 @@ def list_prof(lst):
 
     }
     return render_template('list_prof.html', **context)
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+    if request.method == 'GET':
+        return render_template('login.html', form=form)
+    if form.validate_on_submit():
+        return redirect('/')
 
 
 if __name__ == '__main__':
