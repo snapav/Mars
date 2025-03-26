@@ -1,13 +1,18 @@
-from crypt import methods
-
 from flask import Flask, render_template, request
 from flask_wtf import FlaskForm
 from werkzeug.utils import redirect
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired
+from data import db_session
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'yandexlyceum'
+
+
+def main():
+    db_session.global_init("db/blogs.db")
+    app.run()
+
 
 class LoginForm(FlaskForm):
     astronaut_id = StringField('id астронавта', validators=[DataRequired()])
@@ -15,8 +20,6 @@ class LoginForm(FlaskForm):
     capitan_id = StringField('id капитана', validators=[DataRequired()])
     capitan_password = PasswordField('Пароль капитана', validators=[DataRequired()])
     access = SubmitField('Доступ')
-
-
 
 
 @app.route('/')
@@ -67,6 +70,7 @@ def answer():
     }
     return render_template('answer.html', **context)
 
+
 @app.route('/training/<prof>')
 def training(prof):
     context = {
@@ -95,4 +99,5 @@ def login():
 
 
 if __name__ == '__main__':
+    main()
     app.run(host='127.0.0.1', port=8080)
