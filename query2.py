@@ -3,7 +3,7 @@ from data import db_session
 import datetime
 
 
-db_session.global_init('database/mars_exploer.db')
+db_session.global_init('database/mars_explorer.db')
 session = db_session.create_session()
 
 capitan = Jobs()

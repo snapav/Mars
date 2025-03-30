@@ -11,7 +11,7 @@ from data.jobs import Jobs
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 from jobs_api import blueprint
 from flask_restful import Api
-from user_resourse import  UserResourse, UserListResourse
+from user_resourse import  UserResource, UserListResource
 
 
 app = Flask(__name__)
@@ -26,8 +26,8 @@ def main():
 
 
 api = Api(app)
-api.add_resourse(UserResourse, '/api/v2/users/<int:user_id>')
-api.add_resourse(UserListResourse, '/api/v2/users')
+api.add_resourse(UserResource, '/api/v2/users/<int:user_id>')
+api.add_resourse(UserListResource, '/api/v2/users')
 login_manager = LoginManager()
 login_manager.init_app(app)
 

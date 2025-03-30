@@ -1,4 +1,4 @@
-from flask_restful import Resourse, reqparse
+from flask_restful import Resource, reqparse
 from data.db_session import create_session
 from data.users import User
 from flask import jsonify, abort
@@ -17,7 +17,7 @@ parser.add_argument('hashed_password', required=False)
 
 
 # /api/users/<id>
-class UserResourse(Resourse):
+class UserResource(Resource):
     def get(self, user_id):
         sess = create_session()
         user = sess.query(User).filter(User.id == user_id).first()
@@ -37,7 +37,7 @@ class UserResourse(Resourse):
         return jsonify({'status': 'ok'})
 
 #/api/users/
-class UserListResourse(Resourse):
+class UserListResource(Resource):
     def get(self):
         sess = create_session()
         users = sess.query(User).all()
