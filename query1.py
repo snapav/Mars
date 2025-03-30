@@ -44,6 +44,7 @@ capitan3.address = 'module_4'
 capitan3.email = 'jdunvkino@mars.org'
 capitan3.hashed_password = ''
 
+
 session.add(capitan1)
 session.add(capitan2)
 session.add(capitan3)

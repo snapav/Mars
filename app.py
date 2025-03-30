@@ -14,6 +14,7 @@ from flask_restful import Api
 from user_resourse import  UserResource, UserListResource
 
 
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'yandexlyceum'
 app.config['PERMANENT_SESSION_LIFETIME'] = datetime.timedelta(

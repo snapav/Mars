@@ -14,5 +14,6 @@ capitan.collaborators =  '2, 3'
 capitan.start_date = datetime.datetime.now()
 capitan.is_finished = False
 
+
 session.add(capitan)
 session.commit()
