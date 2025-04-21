@@ -27,8 +27,8 @@ def main():
 
 
 api = Api(app)
-api.add_resourse(UserResource, '/api/v2/users/<int:user_id>')
-api.add_resourse(UserListResource, '/api/v2/users')
+api.add_resource(UserResource, '/api/v2/users/<int:user_id>')
+api.add_resource(UserListResource, '/api/v2/users')
 login_manager = LoginManager()
 login_manager.init_app(app)
 
